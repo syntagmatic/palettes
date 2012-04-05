@@ -66,7 +66,7 @@ var PickerView = Backbone.View.extend({
   render: function() {
     var colors = this.model.get('colors');
     _(colors).each(function(d,i) {
-      $('#swatch-' + i).animate({background: d}, 1200);
+      $('#swatch-' + i).animate({background: d}, 640);
       $('#color-' + i).val(d);
     });
   },

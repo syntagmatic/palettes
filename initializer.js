@@ -43,6 +43,13 @@ if (!('initialized' in localStorage)) {
       '#969696',
       '#636363',
       '#252525'
+    ],
+    'red to blue': [
+      "#d7191c",
+      "#fdae61",
+      "#ffffbf",
+      "#abdda4",
+      "#2b83ba"
     ]
   }
   _(colors).each(function(v,k) {
