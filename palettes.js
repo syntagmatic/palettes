@@ -1,14 +1,12 @@
+var randomColor = function() {
+  return '#'+Math.floor(Math.random()*16777215).toString(16);
+};
+
 var Palette = Backbone.Model.extend({
   defaults: function() {
     return {
       name: "Untitled",
-      colors: [
-        "#d7191c",
-        "#fdae61",
-        "#ffffbf",
-        "#abdda4",
-        "#2b83ba"
-      ]
+      colors: _.map( _.range(5), randomColor )
     };
   },
 });
@@ -40,7 +38,8 @@ var PaletteView = Backbone.View.extend({
 var PickerView = Backbone.View.extend({
   el: $('#picker'),
   events: {
-    "click #create-palette": "createPalette"
+    "click #create-palette": "createPalette",
+    "click #random-palette": "randomPalette"
   },
   initialize: function() {
     var self = this;
@@ -76,6 +75,9 @@ var PickerView = Backbone.View.extend({
   createPalette: function() {
     Palettes.create(this.model.toJSON());
     window.scrollTo( window.scrollX, 0);
+  },
+  randomPalette: function() {
+    this.model.set({colors: _.map( _.range(5), randomColor ) });
   }
 });
 
