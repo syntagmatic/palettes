@@ -53,11 +53,12 @@ var PickerView = Backbone.View.extend({
         $('#color-' + i).focus();
       });
     });
-    $('input').each(function(i) {
+    $('#color-pickers input').each(function(i) {
       $(this).on('keyup', function() {
         var colors = _.clone( self.model.get('colors') );
         colors[i] = $(this).val();
-        self.model.set('colors', colors);
+        self.model.set('colors', colors, {silent: true});
+        $('#swatch-' + i).animate({background: colors[i] }, 400)
       });
     });
     this.render();
@@ -66,10 +67,7 @@ var PickerView = Backbone.View.extend({
     var colors = this.model.get('colors');
     _(colors).each(function(d,i) {
       $('#swatch-' + i).animate({background: d}, 1200);
-      // don't update focused input
-      if (!$('#color-' + i).is(":focus")) {
-        $('#color-' + i).val(d);
-      }
+      $('#color-' + i).val(d);
     });
   },
   createPalette: function() {
