@@ -15,22 +15,29 @@
     <header>
       <h1>Palettes</h1>
       <div id="picker">
-        <div id="swatches">
+        <div id="swatches" class="fivecols">
           <div class="swatch" id="swatch-0"></div>
           <div class="swatch" id="swatch-1"></div>
           <div class="swatch" id="swatch-2"></div>
           <div class="swatch" id="swatch-3"></div>
           <div class="swatch" id="swatch-4"></div>
         </div>
-        <input type="range" id="hue"></input>
-        <button id="createPalette">Create Palette</button>
+        <div id="color-pickers" class="fivecols">
+          <input type="text" id="color-0" value="#333"></input>
+          <input type="text" id="color-1" value="#333"></input>
+          <input type="text" id="color-2" value="#333"></input>
+          <input type="text" id="color-3" value="#333"></input>
+          <input type="text" id="color-4" value="#333"></input>
+        </div>
+        <button id="create-palette">Create</button>
       </div>
     </header>
-
   </div>
   
+  <ul id="palette-list"></ul>
+
   <div id="instructions">
-    Double-click to edit a todo.
+    Click to edit a palette.
   </div>
   
   <div id="credits">
@@ -39,17 +46,26 @@
     <a href="http://exposedata.com/">Kai Chang</a>.
   </div>
 
+  <!-- Templates -->
+
+  <script type="text/template" id="item-template">
+    <div class="swatches fivecols">
+      <div class="swatch" style="background: <%= colors[0] %>"></div>
+      <div class="swatch" style="background: <%= colors[1] %>"></div>
+      <div class="swatch" style="background: <%= colors[2] %>"></div>
+      <div class="swatch" style="background: <%= colors[3] %>"></div>
+      <div class="swatch" style="background: <%= colors[4] %>"></div>
+      <div style="clear: both;"></div>
+    </div>
+  </script>
+
   <script src="lib/json2.js"></script>
   <script src="lib/zepto.js"></script>
   <script src="lib/underscore.js"></script>
   <script src="lib/backbone.js"></script>
   <script src="lib/backbone-localstorage.js"></script>
   <script src="ocular.js"></script>
-
-  <!-- Templates -->
-
-  <script type="text/template" id="item-template">
-  </script>
+  <script src="initializer.js"></script>
 
   </body>
 </html>

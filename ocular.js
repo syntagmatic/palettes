@@ -1,44 +1,88 @@
-  var Palette = Backbone.Model.extend({
-    defaults: function() {
-      return {
-        name: "Untitled",
-        colors: [
-          "#d7191c",
-          "#fdae61",
-          "#ffffbf",
-          "#abdda4",
-          "#2b83ba"
-        ]
-      };
-    },
-  });
+var Palette = Backbone.Model.extend({
+  defaults: function() {
+    return {
+      name: "Untitled",
+      colors: [
+        "#d7191c",
+        "#fdae61",
+        "#ffffbf",
+        "#abdda4",
+        "#2b83ba"
+      ]
+    };
+  },
+});
 
-  var PaletteList = Backbone.Collection.extend({
-    model: Palette,
-    localStorage: new Store("palettes-backbone")
-  });
+var defaultPalette = new Palette;
 
-  var PickerView = Backbone.View.extend({
-    el: $('#picker'),
-    events: {
-      "click #createPalette": "createPalette"
-    },
-    selected: 0,
-    initialize: function() {
-      var colors = this.model.get('colors');
-      _(colors).each(function(d,i) {
-        $('#swatch-' + i).animate({background: d}, 1200);
+var PaletteList = Backbone.Collection.extend({
+  model: Palette,
+  localStorage: new Store("palettes-backbone")
+});
+
+var PaletteView = Backbone.View.extend({
+  tagName: "li",
+  template: _.template($('#item-template').html()),
+  events: {
+    'click': 'setPicker'
+  },
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  },
+  setPicker: function() {
+    defaultPalette.set(this.model.toJSON());
+    window.scrollTo( window.scrollX, 0);
+  }
+});
+
+var PickerView = Backbone.View.extend({
+  el: $('#picker'),
+  events: {
+    "click #create-palette": "createPalette"
+  },
+  initialize: function() {
+    var self = this;
+    this.model.bind('change', this.render, this);
+    $('input').each(function(i) {
+      $(this).on('keyup', function() {
+        var colors = _.clone( self.model.get('colors') );
+        colors[i] = $(this).val();
+        self.model.set('colors', colors);
       });
-      $('#swatch-' + this.selected).addClass('selected');
-    },
-    createPalette: function() {
-      Palettes.create(this.model.attributes);
-    }
-  });
+    });
+    this.render();
+  },
+  render: function() {
+    var colors = this.model.get('colors');
+    _(colors).each(function(d,i) {
+      $('#swatch-' + i).animate({background: d}, 1200);
+      $('#color-' + i).val(d);
+    });
+  },
+  createPalette: function() {
+    Palettes.create(this.model.attributes);
+  }
+});
 
-  var defaultPalette = new Palette;
-  var Palettes = new PaletteList;
+var PaletteListView = Backbone.View.extend({
+  el: $("#palette-list"),
+  initialize: function() {
+    Palettes.bind('add', this.addOne, this);
+    Palettes.bind('reset', this.addAll, this);
+  },
+  addOne: function(palette) {
+    var view = new PaletteView({model: palette});
+    $("#palette-list").prepend(view.render().el);
+  },
+  addAll: function() {
+    Palettes.each(this.addOne);
+  },
+});
 
-  var Picker = new PickerView({ model: defaultPalette });
+var Palettes = new PaletteList;
 
-  Palettes.fetch();
+var pickerView = new PickerView({ model: defaultPalette });
+var palettesView = new PaletteListView;
+
+Palettes.fetch();
