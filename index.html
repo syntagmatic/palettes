@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Palettes - Backbone.js Color Palette Creator</title>
+  <link rel="stylesheet" href="ocular.css"/>
+</head>
+
+<body>
+  
+  <div id="todoapp">
+    
+    <header>
+      <h1>Palettes</h1>
+      <div id="picker">
+        <div id="swatches">
+          <div class="swatch" id="swatch-0"></div>
+          <div class="swatch" id="swatch-1"></div>
+          <div class="swatch" id="swatch-2"></div>
+          <div class="swatch" id="swatch-3"></div>
+          <div class="swatch" id="swatch-4"></div>
+        </div>
+        <input type="range" id="hue"></input>
+        <button id="createPalette">Create Palette</button>
+      </div>
+    </header>
+
+  </div>
+  
+  <div id="instructions">
+    Double-click to edit a todo.
+  </div>
+  
+  <div id="credits">
+    Created by
+    <br />
+    <a href="http://exposedata.com/">Kai Chang</a>.
+  </div>
+
+  <script src="lib/json2.js"></script>
+  <script src="lib/zepto.js"></script>
+  <script src="lib/underscore.js"></script>
+  <script src="lib/backbone.js"></script>
+  <script src="lib/backbone-localstorage.js"></script>
+  <script src="ocular.js"></script>
+
+  <!-- Templates -->
+
+  <script type="text/template" id="item-template">
+  </script>
+
+  </body>
+</html>
