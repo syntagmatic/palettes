@@ -31,8 +31,9 @@ var PaletteView = Backbone.View.extend({
     return this;
   },
   setPicker: function() {
-    defaultPalette.set(this.model.toJSON());
-    window.scrollTo( window.scrollX, 0);
+    defaultPalette.set({
+      colors: this.model.get("colors")
+    });
   }
 });
 
@@ -61,7 +62,8 @@ var PickerView = Backbone.View.extend({
     });
   },
   createPalette: function() {
-    Palettes.create(this.model.attributes);
+    Palettes.create(this.model.toJSON());
+    window.scrollTo( window.scrollX, 0);
   }
 });
 
