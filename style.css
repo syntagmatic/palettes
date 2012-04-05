@@ -14,23 +14,34 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#todoapp {
+#control {
   position: fixed;
   top: 0;
   background: #222;
-  padding: 20px;
+  padding: 2px 20px 8px;
   margin-bottom: 40px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 2px 6px 4px;
   border-radius: 0 0 5px 5px;
 }
 
+header {
+  padding: 4px 8px;
+}
+
 h1 {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.3em;
   font-weight: bold;
-  text-align: center;
-  padding: 0 0 14px 0;
+  padding: 0 ;
   margin: 0;
+  display: inline;
+}
+
+h3 {
+  margin: 0;
+  font-size: 13px;
+  color: #999;
+  display: inline;
 }
 
 input[type="text"] {
@@ -69,11 +80,18 @@ button {
 button:hover,
 input:focus {
   color: #111;
-  background: #f3f3f3;
+  background: #ffffbf;
 }
 
 #create-palette {
   margin: 0px 0 0 196px;
+  color: #999;
+  background: #333;
+}
+
+#create-palette:hover {
+  color: #111;
+  background: #a7fd9c;
 }
 
 #main {
@@ -87,8 +105,8 @@ input:focus {
 }
 
 #swatches {
-  border: 1px solid #000;
-  background: #111;
+  border: 2px solid #050505;
+  background: #090909;
   height: 96px;
   border-radius: 6px;
 }
@@ -100,6 +118,7 @@ input:focus {
   float: left;
   background: #333;
   border-radius: 4px;
+  box-shadow: 0 0 8px #000;
 }
 
 #palette-list .swatch {
@@ -124,7 +143,7 @@ input:focus {
 
 #palette-list {
   padding: 0;
-  margin: 300px 116px 0;
+  margin: 250px 116px 0;
 }
 
 #palette-list li {

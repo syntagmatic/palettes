@@ -45,6 +45,15 @@ var PickerView = Backbone.View.extend({
   initialize: function() {
     var self = this;
     this.model.bind('change', this.render, this);
+    _.each(_.range(5), function(i) {
+      $('#color-' + i).on('focus', function() {
+        // this strange line sets the cursor to the end of text input when focused
+        $(this).val( $(this).val() );
+      });
+      $('#swatch-'+ i).click(function() {
+        $('#color-' + i).focus();
+      });
+    });
     $('input').each(function(i) {
       $(this).on('keyup', function() {
         var colors = _.clone( self.model.get('colors') );

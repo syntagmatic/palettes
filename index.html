@@ -4,48 +4,54 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Palettes - Backbone.js Color Palette Creator</title>
-  <link rel="stylesheet" href="palettes.css"/>
+  <title>palettes - Backbone.js Color Palette Creator</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <script src="lib/json2.js"></script>
+  <script src="lib/zepto.js"></script>
+  <script src="lib/underscore.js"></script>
+  <script src="lib/backbone.js"></script>
+  <script src="lib/backbone-localstorage.js"></script>
+
 </head>
 
 <body>
   
-  <div id="todoapp">
+  <div id="control">
     
     <header>
-      <h1>Palettes</h1>
-      <div id="picker">
-        <div id="swatches" class="fivecols">
-          <div class="swatch" id="swatch-0"></div>
-          <div class="swatch" id="swatch-1"></div>
-          <div class="swatch" id="swatch-2"></div>
-          <div class="swatch" id="swatch-3"></div>
-          <div class="swatch" id="swatch-4"></div>
-        </div>
-        <div id="color-pickers" class="fivecols">
-          <input type="text" id="color-0" value="#333"></input>
-          <input type="text" id="color-1" value="#333"></input>
-          <input type="text" id="color-2" value="#333"></input>
-          <input type="text" id="color-3" value="#333"></input>
-          <input type="text" id="color-4" value="#333"></input>
-        </div>
-        <button id="create-palette">Create</button>
-      </div>
+      <h1>palettes</h1>
+      <h3>blocks of color</h3>
     </header>
+    <div id="picker">
+      <div id="swatches" class="fivecols">
+        <div class="swatch" id="swatch-0"></div>
+        <div class="swatch" id="swatch-1"></div>
+        <div class="swatch" id="swatch-2"></div>
+        <div class="swatch" id="swatch-3"></div>
+        <div class="swatch" id="swatch-4"></div>
+      </div>
+      <div id="color-pickers" class="fivecols">
+        <input type="text" id="color-0" value="#333"></input>
+        <input type="text" id="color-1" value="#333"></input>
+        <input type="text" id="color-2" value="#333"></input>
+        <input type="text" id="color-3" value="#333"></input>
+        <input type="text" id="color-4" value="#333"></input>
+      </div>
+      <button id="create-palette">create</button>
+    </div>
   </div>
   
   <ul id="palette-list"></ul>
 
   <div id="instructions">
-    Click to edit a palette.
+    click to edit a palette.
   </div>
   
   <div id="credits">
-    Created by <a href="http://exposedata.com/">Kai Chang</a>.<br/>
-    Released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+    created by <a href="https://github.com/syntagmatic">kai</a><br/>
+    released under the <a href="http://www.opensource.org/licenses/mit-license.php">mit license</a>
   </div>
-
-  <!-- Templates -->
 
   <script type="text/template" id="item-template">
     <div class="swatches">
@@ -58,11 +64,6 @@
     </div>
   </script>
 
-  <script src="lib/json2.js"></script>
-  <script src="lib/zepto.js"></script>
-  <script src="lib/underscore.js"></script>
-  <script src="lib/backbone.js"></script>
-  <script src="lib/backbone-localstorage.js"></script>
   <script src="palettes.js"></script>
   <script src="initializer.js"></script>
 
