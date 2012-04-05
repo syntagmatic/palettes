@@ -58,7 +58,10 @@ var PickerView = Backbone.View.extend({
     var colors = this.model.get('colors');
     _(colors).each(function(d,i) {
       $('#swatch-' + i).animate({background: d}, 1200);
-      $('#color-' + i).val(d);
+      // don't update focused input
+      if (!$('#color-' + i).is(":focus")) {
+        $('#color-' + i).val(d);
+      }
     });
   },
   createPalette: function() {
