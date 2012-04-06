@@ -53,9 +53,9 @@ if (!('initialized' in localStorage)) {
     ]
   }
   _(colors).each(function(v,k) {
-  Palettes.create({
-    name: k,
-    colors: v
-  })
+    Palettes.create({
+      name: k,
+      colors: v
+    })
   });
 }
